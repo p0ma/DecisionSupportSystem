@@ -4,14 +4,14 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Casing {
-    private float width;
-    private float height;
+    private double width;
+    private double height;
 
     public Casing() {
 
     }
 
-    public Casing(float width, float height) {
+    public Casing(double width, double height) {
         this.width = width;
         this.height = height;
     }
@@ -20,15 +20,15 @@ public class Casing {
         return width;
     }
 
-    public void setWidth(float width) {
+    public void setWidth(double width) {
         this.width = width;
     }
 
-    public float getHeight() {
+    public double getHeight() {
         return height;
     }
 
-    public void setHeight(float height) {
+    public void setHeight(double height) {
         this.height = height;
     }
 }

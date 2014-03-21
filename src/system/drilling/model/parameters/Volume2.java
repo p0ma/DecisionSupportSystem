@@ -6,10 +6,10 @@ import org.springframework.stereotype.Component;
 public class Volume2 extends Parameter {
 
     public Volume2() {
-        super("0");
+        super();
     }
 
-    public Volume2(String value) {
+    public Volume2(Object value) {
         super(value);
     }
 }

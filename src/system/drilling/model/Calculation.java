@@ -9,8 +9,7 @@ public class Calculation {
     @Autowired
     private DataSet dataSet;
 
-    public void calculate()
-    {
+    public void calculate() {
         method = chooseMethod();
         method.perform();
     }
@@ -18,13 +17,15 @@ public class Calculation {
     private Method chooseMethod() {
         Method method;
 
-        switch(dataSet.getSituation())
-        {
-            case Boring: method = new DuringBoring();
+        switch (dataSet.getSituation()) {
+            case Boring:
+                method = new DuringBoring();
                 break;
-            case SPO: method = new DuringSPO();
+            case SPO:
+                method = new DuringSPO();
                 break;
-            default: method = null;
+            default:
+                method = null;
                 break;
         }
         return method;

@@ -7,22 +7,33 @@ import java.util.List;
 
 public abstract class Parameter implements IParameter {
 
-    protected String value;
+    protected Object value;
     protected Model model;
 
-    public Parameter(String value) {
+    public Parameter() {
+        value = new Double(0);
+    }
+
+    public Parameter(Object value) {
         this.value = value;
     }
 
-    public final void setValue(String value) {
-        if (!this.value.equals(value)) {
-            notifyListeners(this, this.value, value);
-            this.value = value;
+    public final void setValue(Object value) {
+        if (value != this.value) {
+            try {
+                if (!this.value.equals(value)) {
+                    notifyListeners(this, this.value, value);
+                    this.value = value;
+                }
+            } catch (NullPointerException e) {
+                notifyListeners(this, this.value, value);
+                this.value = value;
+            }
         }
     }
 
     @Override
-    public String getValue() throws CrossComputingException {
+    public Object getValue() throws CrossComputingException {
         return value;
     }
 
@@ -37,7 +48,7 @@ public abstract class Parameter implements IParameter {
 
     private List<IParameterListener> parameterListeners = new ArrayList<IParameterListener>();
 
-    private void notifyListeners(Object object, String oldValue, String newValue) {
+    private void notifyListeners(Object object, Object oldValue, Object newValue) {
         for (IParameterListener parameterListener : parameterListeners) {
             parameterListener.parameterChange(new ParameterChangeEvent(object, oldValue, newValue));
         }

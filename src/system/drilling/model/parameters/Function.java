@@ -1,12 +1,21 @@
 package system.drilling.model.parameters;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class Function extends Parameter implements IParameterListener {
 
     private boolean finalResult;
     protected boolean isInitialized = false;
     protected boolean calculating = false;
 
-    public Function(String value) {
+    private List<Class<?>> parameters = new ArrayList<Class<?>>();
+
+    public Function() {
+        super();
+    }
+
+    public Function(Object value) {
         super(value);
     }
 
@@ -19,8 +28,20 @@ public abstract class Function extends Parameter implements IParameterListener {
         finalResult = true;
     }
 
+    protected final void registerDependentParameter(Class<?> parameter) {
+        parameters.add(parameter);
+        model.provideListenerToParameter(this, parameter);
+    }
+
+    protected Object getParameterValue(Class<?> parameter) {
+        if (parameters.contains(parameter)) return model.getParameterValue(parameter);
+        else return null;
+    }
+
+    protected abstract void registerDependentParameters();
+
     @Override
-    public final String getValue() throws CrossComputingException {
+    public final Object getValue() throws CrossComputingException {
         if (calculating) throw new CrossComputingException();
         if (!finalResult) {
             calculate();
@@ -35,7 +56,12 @@ public abstract class Function extends Parameter implements IParameterListener {
     }
 
     @Override
-    public abstract void initListener();
+    public final void initListener() {
+        if (!isInitialized) {
+            registerDependentParameters();
+            isInitialized = true;
+        }
+    }
 
     public void setFinalResult(boolean finalResult) {
         this.finalResult = finalResult;

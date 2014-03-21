@@ -6,7 +6,7 @@ public class ParameterChangeEvent {
     private String oldValue;
     private String newValue;
 
-    public ParameterChangeEvent(Object object, String oldValue, String newValue) {
+    public ParameterChangeEvent(Object object, Object oldValue, Object newValue) {
 
     }
 
@@ -14,11 +14,11 @@ public class ParameterChangeEvent {
         return object;
     }
 
-    public String getOldValue() {
+    public Object getOldValue() {
         return oldValue;
     }
 
-    public String getNewValue() {
+    public Object getNewValue() {
         return newValue;
     }
 }

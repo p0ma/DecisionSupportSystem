@@ -16,8 +16,8 @@ public class Well {
 
     }
 
-    public String getValue() {
-        return Double.toString(casing.getHeight() * casing.getWidth());
+    public Object getValue() {
+        return (Double) (casing.getHeight() * casing.getWidth());
     }
 
     /*public void ComputeMudVolume()

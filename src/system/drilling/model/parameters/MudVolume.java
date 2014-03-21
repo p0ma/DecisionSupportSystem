@@ -11,7 +11,7 @@ public class MudVolume extends Function {
     private Well well;
 
     public MudVolume() {
-        super("0");
+        super(null);
     }
 
     public MudVolume(String value) {
@@ -21,19 +21,18 @@ public class MudVolume extends Function {
     @Override
     public void function() throws CrossComputingException {
         setValue(
-                Double.toString(
-                        Double.parseDouble(model.getParameterValue(Volume1.class))
-                                *
-                                Double.parseDouble(well.getValue())
-                )
+                (Double) getParameterValue(Volume1.class)
+                        *
+                        (Double) well.getValue()
+                        + (Double) getParameterValue(Pressure.class)
         );
     }
 
     @Override
-    public void initListener() {
-        if (!isInitialized) {
-            model.provideListenerToParameter(this, Volume1.class);
-            isInitialized = true;
-        }
+    protected void registerDependentParameters() {
+        registerDependentParameter(Volume1.class);
+        registerDependentParameter(Pressure.class);
     }
+
+
 }

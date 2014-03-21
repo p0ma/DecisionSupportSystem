@@ -1,15 +1,15 @@
 package system.drilling.model.well;
 
 public class PipeType {
-    private float innerDiam;
-    private float thickness;
+    private double innerDiam;
+    private double thickness;
 
-    public PipeType(float innerDiam, float thickness) {
+    public PipeType(double innerDiam, double thickness) {
         this.innerDiam = innerDiam;
         this.thickness = thickness;
     }
 
-    public float getInnerDiam() {
+    public double getInnerDiam() {
         return innerDiam;
     }
 
@@ -17,7 +17,7 @@ public class PipeType {
         this.innerDiam = innerDiam;
     }
 
-    public float getThickness() {
+    public double getThickness() {
         return thickness;
     }
 

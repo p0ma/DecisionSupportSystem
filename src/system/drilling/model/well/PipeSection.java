@@ -2,7 +2,7 @@ package system.drilling.model.well;
 
 public class PipeSection {
     private PipeType pipeType;
-    private float length;
+    private double length;
 
     public PipeSection() {
 
@@ -16,7 +16,7 @@ public class PipeSection {
         this.pipeType = pipeType;
     }
 
-    public float getLength() {
+    public double getLength() {
         return length;
     }
 
