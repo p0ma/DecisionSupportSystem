@@ -54,7 +54,7 @@ public class Model {
     }
 
     public void provideListenerToParameter(IParameterListener parameterListener, Class<?> key) {
-        provideListenerToParameter(parameterListener, key.getClass().getSimpleName());
+        provideListenerToParameter(parameterListener, key.getSimpleName());
     }
 
     public void renewResults() {
