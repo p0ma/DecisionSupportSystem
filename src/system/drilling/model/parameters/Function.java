@@ -35,10 +35,11 @@ public abstract class Function extends Parameter implements IParameterListener {
 
     protected Object getParameterValue(Class<?> parameter) {
         if (parameters.contains(parameter)) return model.getParameterValue(parameter);
-        else return null;
+        else {
+            registerDependentParameter(parameter);
+            return model.getParameterValue(parameter);
+        }
     }
-
-    protected abstract void registerDependentParameters();
 
     @Override
     public final Object getValue() throws CrossComputingException {
@@ -53,14 +54,6 @@ public abstract class Function extends Parameter implements IParameterListener {
     @Override
     public final void parameterChange(ParameterChangeEvent parameterChangeEvent) {
         finalResult = false;
-    }
-
-    @Override
-    public final void initListener() {
-        if (!isInitialized) {
-            registerDependentParameters();
-            isInitialized = true;
-        }
     }
 
     public void setFinalResult(boolean finalResult) {

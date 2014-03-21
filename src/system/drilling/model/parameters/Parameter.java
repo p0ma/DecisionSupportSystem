@@ -1,5 +1,6 @@
 package system.drilling.model.parameters;
 
+import system.drilling.model.IModel;
 import system.drilling.model.Model;
 
 import java.util.ArrayList;
@@ -8,7 +9,7 @@ import java.util.List;
 public abstract class Parameter implements IParameter {
 
     protected Object value;
-    protected Model model;
+    protected IModel model;
 
     public Parameter() {
         value = new Double(0);
@@ -42,7 +43,7 @@ public abstract class Parameter implements IParameter {
         this.model = model;
     }
 
-    public final Model getModel() {
+    public final IModel getModel() {
         return model;
     }
 

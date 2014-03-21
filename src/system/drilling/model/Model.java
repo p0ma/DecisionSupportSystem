@@ -35,7 +35,6 @@ public class Model implements IModel{
     private Model addParameter(String key, IParameter parameter) {
         parameterMap.put(key, parameter);
         parameter.setModel(this);
-        if (parameter instanceof Function) ((Function) parameter).initListener();
         return this;
     }
 
@@ -76,9 +75,11 @@ public class Model implements IModel{
     public Map<String, String> getAllValues() {
         Map<String, String> map = new HashMap<String, String>();
         try{
+        int size = parameterMap.size();
         for(IParameter parameter : parameterMap.values())
         {
             map.put(parameter.getClass().getSimpleName(), ((Double)(parameter.getValue())).toString());
+            if(parameterMap.values().size() > size) return getAllValues();
         }
         }catch (CrossComputingException e) {
             e.printStackTrace();

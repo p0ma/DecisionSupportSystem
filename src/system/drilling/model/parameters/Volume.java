@@ -14,13 +14,6 @@ public class Volume extends Function {
     }
 
     @Override
-    protected final void registerDependentParameters() {
-        registerDependentParameter(MudVolume.class);
-        registerDependentParameter(Volume1.class);
-        registerDependentParameter(Volume2.class);
-    }
-
-    @Override
     protected void function() throws CrossComputingException {
         setValue(((Double) getParameterValue(Volume1.class) +
                 (Double) getParameterValue(Volume2.class) +

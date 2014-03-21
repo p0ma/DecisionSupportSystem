@@ -24,15 +24,6 @@ public class MudVolume extends Function {
                 (Double) getParameterValue(Volume1.class)
                         *
                         (Double) well.getValue()
-                        + (Double) getParameterValue(Pressure.class)
         );
     }
-
-    @Override
-    protected void registerDependentParameters() {
-        registerDependentParameter(Volume1.class);
-        registerDependentParameter(Pressure.class);
-    }
-
-
 }
